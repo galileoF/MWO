@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.lang.Math;
 /**
  * Created by adam on 23.10.16.
  */
@@ -18,20 +18,25 @@ public class BusinessCard {
 
         String firstLine = "* " + name + " " + surname + " *";
         String secondLine = "* " + tel + " adres: " + city + " *" ;
-        String stars="";
-        if(secondLine.length() > firstLine.length()){
-            for(int i=0; i<secondLine.length();i++){
-                stars += "*";
+        int firstLineLen = firstLine.length();
+        int secondLineLen = secondLine.length();
+        int difference=Math.abs(firstLineLen-secondLineLen);
+        String space="";
+        for(int i=0;i<difference;i++){space+=" ";}
+        int greater;
+        if(firstLineLen < secondLineLen){
+            greater=secondLineLen;
+            firstLine = "* " + name + " " + surname + space + " *";
             }
-        }
         else{
-            for(int i=0; i<firstLine.length();i++){
-                stars += "*";
+            greater=firstLineLen;
+            secondLine = "* " + tel + " adres: " + city + space + " *" ;
             }
-        }
+        String stars="";
+        for(int i=0;i<greater;i++){stars+="*";}
+
 
         System.out.println(stars);
-
         System.out.println(firstLine);
         System.out.println(secondLine);
         System.out.println(stars);
