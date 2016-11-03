@@ -4,10 +4,10 @@ import java.util.Scanner;
  */
 public class Dzielniki {
     public static void main(String[] args){
-        readNumber();
+        findDividers(readNumber());
 
-        findDividers(liczba);
-        printDividers();
+        //findDividers();
+        //printDividers();
 
     }
     public static int readNumber(){
@@ -17,9 +17,9 @@ public class Dzielniki {
         return liczba;
     }
     public static boolean checkDivider(int liczba, int b){
-        System.out.println("Podaj dzielnik: ");
-        Scanner scanner = new Scanner(System.in);
-        b = scanner.nextInt();
+        //System.out.println("Podaj dzielnik: ");
+        //Scanner scanner = new Scanner(System.in);
+        //b = scanner.nextInt();
         if(liczba%b==0){
             return true;
         }
@@ -28,17 +28,19 @@ public class Dzielniki {
         }
 
     }
-    public static int findDividers(int x){
-        int[] result = new int[10];
-        for(int i = 1; i < x/2; i++){
+    public static void findDividers(int x){
+        //int[] result = new int[10];
+        for(int i = 1; i <= x/2; i++){
 
-            if(x%i==0){
-                result[i-1]=i;
+            if(checkDivider(x,i)){
+                //result[i-1]=i;
+                System.out.println(i);
             }
         }
-        return result;
+        //return result;
     }
-    public static String printDividers(){
-        System.out.println(result);
-    }
+    //public static void printDividers(int[] result){
+       //System.out.println(result);
+
+    //}
 }
