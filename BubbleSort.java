@@ -7,31 +7,34 @@ public class BubbleSort {
 
         printNumbers(numbers);
     }
-    public static void swap(int[] valuesInArray){
-        for(int j=0; j<valuesInArray.length-1;j++) {
+    public static void swap(int[] values){
+        for(int j=0; j<values.length-1;j++) {
             int temp;
-            temp = valuesInArray[j + 1];
-            valuesInArray[j + 1] = valuesInArray[j];
-            valuesInArray[j] = temp;
+            temp = values[j + 1];
+            values[j + 1] = values[j];
+            values[j] = temp;
 
 
         }
 
     }
-    public static boolean isGreaterThan(int[] values){
-        for(int j=0; j<values.length-1;j++) {
-            if (values[j] > values[j + 1]) {
-
+    public static boolean isGreaterThan(int value1, int value2){
+            if (value1 > value2) {
+                return true;
             }
-        }
-        return true;
+            else {
+                return false;
+            }
+
 
     }
 
     public static void sort(int[] mess){
-        if(isGreaterThan(mess)){
-            swap(mess);
+        for(int j=0;j<mess.length-1;j++) {
+            if (isGreaterThan(mess[j], mess[j+1])) {
+                swap(mess);
 
+            }
         }
     }
     public static void printNumbers(int[] sorted) {
