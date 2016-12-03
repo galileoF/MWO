@@ -1,46 +1,99 @@
-import java.util.Scanner;
-import java.lang.Math;
-/**
- * Created by adam on 23.10.16.
- */
-public class BusinessCard {
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your name: ");
-        String name=scanner.next();
-        System.out.println("Enter your surname: ");
-        String surname=scanner.next();
-        System.out.println("Enter your phone number: ");
-        int tel=scanner.nextInt();
-        System.out.println("Enter your city of residence: ");
-        String city=scanner.next();
+import java.util.ArrayList;
 
+public class BusinessCard{
+	private String name;
+	private String surname;
+	private int phone;
+	private String city;
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	public String getName(){
+		return name;
+	}
+	
+	public void setSurname(String surname){
+		this.surname = surname;
+	}
+	public String getSurname(){
+		return surname;
+	}
+	
+	public void setPhone(int phone){
+		this.phone = phone;
+	}
+	public int getPhone(){
+		return phone;
+	}
+	
+	public void setCity(String city){
+		this.city = city;
+	}
+	public String getCity(){
+		return city;
+	}
+	
+	public BusinessCard(String name, String surname, int phone, String city){
+		this.name = name;
+		this.surname = surname;
+		this.phone = phone;
+		this.city = city;
+	}
+	public BusinessCard(String name, String surname){
+		this(name, surname, 123456789, "Krakow");
+		
+	}
+	
+	public void print() {
+      ArrayList<String> lines = getLines();
 
-        String firstLine = "* " + name + " " + surname + " *";
-        String secondLine = "* " + tel + " adres: " + city + " *" ;
-        int firstLineLen = firstLine.length();
-        int secondLineLen = secondLine.length();
-        int difference=Math.abs(firstLineLen-secondLineLen);
-        String space="";
-        for(int i=0;i<difference;i++){space+=" ";}
-        int greater;
-        if(firstLineLen < secondLineLen){
-            greater=secondLineLen;
-            firstLine = "* " + name + " " + surname + space + " *";
-            }
-        else{
-            greater=firstLineLen;
-            secondLine = "* " + tel + " adres: " + city + space + " *" ;
-            }
-        String stars="";
-        for(int i=0;i<greater;i++){stars+="*";}
+      int maxLength = getMaxLength(lines);
 
+      String starsLine = "";
+      for (int i = 0; i < maxLength + 2; i++) {
+          starsLine += "*";
+      }
 
-        System.out.println(stars);
-        System.out.println(firstLine);
-        System.out.println(secondLine);
-        System.out.println(stars);
+      System.out.println(starsLine);
 
+      for (String line : lines) {
+          int lengthDiff = maxLength - line.length();
 
-    }
+          for (int i = 0; i < lengthDiff; i++) {
+              line += " ";
+          }
+
+          line = "*" + line + "*";
+
+          System.out.println(line);
+      }
+
+      System.out.println(starsLine);
+  }
+
+  private int getMaxLength(ArrayList<String> lines) {
+      int maxLength = 0;
+
+      for (String line : lines) {
+          int lineLength = line.length();
+
+          if (lineLength > maxLength) {
+              maxLength = lineLength;
+          }
+      }
+
+      return maxLength;
+  }
+
+  protected ArrayList<String> getLines() {
+      ArrayList<String> lines = new ArrayList<>();
+
+      lines.add(name + " " + surname);
+      lines.add("tel. " + phone + " adres: " + city);
+
+      return lines;
+  }
 }
+
+
